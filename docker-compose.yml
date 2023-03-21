@@ -1,0 +1,16 @@
+version: '3.9'
+services:
+  playlist:
+    container_name: playlist
+    build:
+      context: .
+    volumes:
+      - ${PWD}:/usr/src/app    
+    ports:
+      - 4200:4200
+    command: 
+      - /bin/sh
+      - -c
+      - |
+        npm i
+        ng serve --host 0.0.0.0

@@ -10,6 +10,11 @@ const routes: Routes = [
 ];
 
 @NgModule({
+    // TODO A CHECK
+    declarations:[
+        PlaylistPageComponent,
+        AlbumPageComponent,
+    ],
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule]
 })

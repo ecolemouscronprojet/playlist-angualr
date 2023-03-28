@@ -7,6 +7,7 @@ const routes: Routes = [
     { path: '', redirectTo: '/playlist', pathMatch: 'full' },
     { path: 'playlist', component: PlaylistPageComponent },
     { path: 'album', component: AlbumPageComponent },
+    { path: 'album/:id', component: AlbumPageComponent },
 ];
 
 @NgModule({

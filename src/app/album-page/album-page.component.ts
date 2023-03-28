@@ -7,6 +7,14 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./album-page.component.css']
 })
 export class AlbumPageComponent  implements OnInit, OnDestroy {
+  private _album: object[] = [
+    {id: 1, name: 'nevermind'},
+    {id: 2, name: 'nevermind 2'},
+    {id: 3, name: 'nevermind 3'}
+  ];
+
+  public album?: object;
+
 
   constructor(
     private activatedroute: ActivatedRoute

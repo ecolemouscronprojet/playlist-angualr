@@ -4,3 +4,19 @@
 <a routerLink="/album/1">album</a><br>
 <a routerLink="/album/2/show">album</a><br>
 <a routerLink="/album/3/edit">album</a><br>
+
+<p>
+    <button (click)="createAnAlbum()" type="button">Créer un album</button>
+</p>
+<p>
+    <button (click)="removeAnAlbum()" type="button">Supprimer un album</button>
+</p>
+
+<p>
+    <button (click)="clearAll()" type="button">Supprimer tout</button>
+</p>
+
+
+<ul>
+    <li *ngFor="let album of albums">{{album.name}}</li>
+</ul>

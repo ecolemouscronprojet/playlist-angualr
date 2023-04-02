@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { LocalStorageServiceService } from './../local-storage-service.service';
+
+export interface Album {
+  name: string;
+}
 
 @Component({
   selector: 'app-playlist-page',
@@ -7,15 +11,34 @@ import { Router } from '@angular/router';
   styleUrls: ['./playlist-page.component.css']
 })
 export class PlaylistPageComponent implements OnInit {
+  public albums?: Album[];
 
-  constructor(private router: Router) {
+
+  constructor(private _localStorageService: LocalStorageServiceService) {
   }
 
   ngOnInit() {
-    setTimeout(() => {
-      console.log('Navigate');
-      this.router.navigate(['/album/2'])
-    }, 3000)
+    this.albums = this._localStorageService.hasKey('albums') ? this._localStorageService.getItem('albums') : [];
+  }
+
+  createAnAlbum(): void {
+    const newAlbum = { name: `album n°${Math.random()}` };
+    this.albums?.push(newAlbum);
+    this._updateLocalStorage();
+  }
+
+  removeAnAlbum(): void {
+    this.albums?.pop();
+    this._updateLocalStorage();
+  }
+
+  clearAll(): void {
+    this._localStorageService.clear();
+  }
+
+
+  private _updateLocalStorage(): void {
+    this._localStorageService.setItem('albums', this.albums);
   }
 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-classe',
@@ -12,7 +12,6 @@ export class ClasseComponent implements OnInit {
 
   constructor(
     private activatedroute: ActivatedRoute,
-    private router: Router
   ) { }
 
 

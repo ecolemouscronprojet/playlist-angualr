@@ -1,11 +1,21 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocalStorageServiceService {
-
+  private _totalAlbumsSubjet: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   constructor() { }
+
+  setTotalAlbums(total: number) {
+    this._totalAlbumsSubjet.next(total);
+  }
+
+  getTotalAlbums() {
+    return this._totalAlbumsSubjet.asObservable();
+  }
+
 
   setItem(key: string, value: any): void {
     if (value != null) {

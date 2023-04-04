@@ -4,6 +4,7 @@ import { PlaylistPageComponent } from './playlist-page/playlist-page.component';
 import { AlbumPageComponent } from './album-page/album-page.component';
 import { ClasseComponent } from './classe/classe.component';
 import { CommonModule } from '@angular/common';
+import { HeaderComponent } from './layout/header/header.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/playlist', pathMatch: 'full' },
@@ -20,6 +21,7 @@ const routes: Routes = [
     declarations:[
         PlaylistPageComponent,
         AlbumPageComponent,
+        HeaderComponent
     ],
     imports: [
         RouterModule.forRoot(routes),

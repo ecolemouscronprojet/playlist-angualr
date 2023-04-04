@@ -19,6 +19,7 @@ export class PlaylistPageComponent implements OnInit {
 
   ngOnInit() {
     this.albums = this._localStorageService.hasKey('albums') ? this._localStorageService.getItem('albums') : [];
+    this.albums ? this._localStorageService.setTotalAlbums(this.albums.length) : null;
   }
 
   createAnAlbum(): void {
@@ -39,6 +40,7 @@ export class PlaylistPageComponent implements OnInit {
 
   private _updateLocalStorage(): void {
     this._localStorageService.setItem('albums', this.albums);
+    this.albums ? this._localStorageService.setTotalAlbums(this.albums.length) : null;
   }
 
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService, User } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,13 +16,19 @@ export class LoginComponent {
 
 
   constructor(
-    private _authService: AuthService
+    private readonly _authService: AuthService,
+    private readonly _router: Router
   ) { }
 
 
   login() {
     const userForm: any = this.loginForm.getRawValue();
     const exists = this._authService.login(userForm)
-    console.log(exists);
+    if (exists) {
+       this._router.navigate(['/playlist']);
+    } else {
+      // TODO MANAGE ERROR MESSAGE
+    }
+
   }
 }

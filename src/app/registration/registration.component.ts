@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LocalStorageServiceService } from '../local-storage-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -16,7 +17,8 @@ export class RegistrationComponent {
   });
 
   constructor(
-    private readonly localStorageService: LocalStorageServiceService
+    private readonly localStorageService: LocalStorageServiceService,
+    private readonly router: Router
   ) { }
 
 
@@ -32,6 +34,7 @@ export class RegistrationComponent {
       users.push(newUser);
       this.localStorageService.setItem('users', users);
       this.registrationForm.reset();
+      this.router.navigate(['/login']);
     }
 
   }

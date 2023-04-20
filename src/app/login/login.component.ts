@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { LocalStorageServiceService } from '../local-storage-service.service';
+import { AuthService, User } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -15,14 +15,13 @@ export class LoginComponent {
 
 
   constructor(
-    private readonly localStorageService: LocalStorageServiceService
+    private _authService: AuthService
   ) { }
 
 
   login() {
-    const users = this.localStorageService.getItem('users') || [];
-    const userForm = this.loginForm.getRawValue();
-    const currentUser = users
-    .find((u: any) => u.login = userForm.login && u.password === userForm.password);
+    const userForm: any = this.loginForm.getRawValue();
+    const exists = this._authService.login(userForm)
+    console.log(exists);
   }
 }

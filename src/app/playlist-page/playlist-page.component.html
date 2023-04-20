@@ -9,9 +9,6 @@
 <p>
     <button (click)="createAnAlbum()" type="button">Créer un album</button>
 </p>
-<p>
-    <button (click)="removeAnAlbum()" type="button">Supprimer un album</button>
-</p>
 
 <p>
     <button (click)="clearAll()" type="button">Supprimer tout</button>
@@ -19,5 +16,7 @@
 
 
 <ul>
-    <li *ngFor="let album of albums">{{album.name}}</li>
+    <li *ngFor="let album of albums">
+        {{album.name}} <button *ngIf="album.id" (click)="removeAlbum(album.id)">REMOVE</button>
+    </li>
 </ul>

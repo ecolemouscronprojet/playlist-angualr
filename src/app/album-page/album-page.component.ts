@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LocalStorageServiceService } from '../local-storage-service.service';
-import { Album } from '../playlist-page/playlist-page.component';
+import { Album, AlbumService } from './../services/album.service';
 
 @Component({
   selector: 'app-album-page',
@@ -10,28 +9,23 @@ import { Album } from '../playlist-page/playlist-page.component';
 })
 export class AlbumPageComponent implements OnInit, OnDestroy {
   public albums?: Album[];
-  private _albums: { id: number, name: string }[] = [
-    { id: 1, name: 'nevermind' },
-    { id: 2, name: 'nevermind 2' },
-    { id: 3, name: 'nevermind 3' }
-  ];
+  public album: Album | undefined;
 
-  public album?: { id: number, name: string };
 
 
   constructor(
     private activatedroute: ActivatedRoute,
     private router: Router,
-    private _localStorageService: LocalStorageServiceService
+    private readonly albumService: AlbumService
   ) { }
 
 
   ngOnInit() {
-    this.albums = this._localStorageService.hasKey('albums') ? this._localStorageService.getItem('albums') : [];
+    this.albums = this.albumService.getAll();
     const id = this.activatedroute.snapshot.paramMap.get("id");
 
     if (id != null) {
-      this.album = this._albums.find((a: any) => a.id == id);
+      this.album = this.albums.find((a: any) => a.id == id);
       if(!this.album){
         alert('L\'album n\'existe pas !');
         this.router.navigate(['/playlist'])

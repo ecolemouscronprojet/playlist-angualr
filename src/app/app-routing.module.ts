@@ -5,6 +5,7 @@ import { AlbumPageComponent } from './album-page/album-page.component';
 import { ClasseComponent } from './classe/classe.component';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './layout/header/header.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
     { path: '', redirectTo: '/playlist', pathMatch: 'full' },
@@ -24,6 +25,7 @@ const routes: Routes = [
         HeaderComponent
     ],
     imports: [
+        HttpClientModule,
         RouterModule.forRoot(routes),
         CommonModule
     ],

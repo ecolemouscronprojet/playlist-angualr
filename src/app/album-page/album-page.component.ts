@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LocalStorageServiceService } from '../local-storage-service.service';
-import { Album } from '../playlist-page/playlist-page.component';
+import { Album } from '../services/album.service';
+
 
 @Component({
   selector: 'app-album-page',

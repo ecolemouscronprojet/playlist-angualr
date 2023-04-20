@@ -1,46 +1,47 @@
-import { Component, OnInit } from '@angular/core';
-import { LocalStorageServiceService } from './../local-storage-service.service';
+import { CryptoService } from './../services/crypto.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Album, AlbumService } from '../services/album.service';
+import { Subscription, firstValueFrom } from 'rxjs';
 
-export interface Album {
-  name: string;
-}
 
 @Component({
   selector: 'app-playlist-page',
   templateUrl: './playlist-page.component.html',
   styleUrls: ['./playlist-page.component.css']
 })
-export class PlaylistPageComponent implements OnInit {
+export class PlaylistPageComponent implements OnInit, OnDestroy {
   public albums?: Album[];
+  public cryptos?: any[] = [];
+  // private subscription: Subscription;
 
+  constructor(
+    private albumService: AlbumService,
+    private cryptoService: CryptoService
+    ) {}
 
-  constructor(private _localStorageService: LocalStorageServiceService) {
-  }
-
-  ngOnInit() {
-    this.albums = this._localStorageService.hasKey('albums') ? this._localStorageService.getItem('albums') : [];
-    this.albums ? this._localStorageService.setTotalAlbums(this.albums.length) : null;
+  async ngOnInit() {
+    this.albums = this.albumService.getAll();
+    this.cryptos = await firstValueFrom(this.cryptoService.getAll())
+    
+    // this.subscription = this.cryptoService.getAll().subscribe((data) => {
+    //   data.length = 5;
+    //   this.cryptos = data;
+    // });
   }
 
   createAnAlbum(): void {
-    const newAlbum = { name: `album n°${Math.random()}` };
-    this.albums?.push(newAlbum);
-    this._updateLocalStorage();
+    this.albumService.save({
+      id: null,
+      name: `album n°${Math.random()}`
+    });
   }
 
-  removeAnAlbum(): void {
-    this.albums?.pop();
-    this._updateLocalStorage();
-  }
-
-  clearAll(): void {
-    this._localStorageService.clear();
+  removeAlbum(id: string): void {
+    this.albumService.delete(id);
   }
 
 
-  private _updateLocalStorage(): void {
-    this._localStorageService.setItem('albums', this.albums);
-    this.albums ? this._localStorageService.setTotalAlbums(this.albums.length) : null;
+  ngOnDestroy(){
+    // this.subscription.unsubscribe();
   }
-
 }

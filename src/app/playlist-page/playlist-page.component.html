@@ -9,15 +9,19 @@
 <p>
     <button (click)="createAnAlbum()" type="button">Créer un album</button>
 </p>
-<p>
-    <button (click)="removeAnAlbum()" type="button">Supprimer un album</button>
-</p>
 
-<p>
-    <button (click)="clearAll()" type="button">Supprimer tout</button>
-</p>
 
 
 <ul>
-    <li *ngFor="let album of albums">{{album.name}}</li>
+    <li *ngFor="let album of albums">
+        {{album.name}}
+        - <button (click)="removeAlbum(album.id)" *ngIf="album.id != null" type="button">Supprimer</button>
+    </li>
+</ul>
+
+<h2>CRYPTO</h2>
+<ul>
+    <li *ngFor="let c of cryptos">
+        {{c.symbol}} - {{c.volume}}
+    </li>
 </ul>

@@ -16,11 +16,11 @@ const routes: Routes = [
     { path: 'registration', component: RegistrationComponent},
 
     { path: 'playlist', component: PlaylistPageComponent, canActivate: [UserConnectedGuard] },
-    { path: 'album', component: AlbumPageComponent },
-    { path: 'album/:id', component: AlbumPageComponent },
-    { path: 'album/:id/edit', component: AlbumPageComponent },
-    { path: 'album/:id/show', component: AlbumPageComponent },
-    { path: 'classe/:id', component: ClasseComponent },
+    { path: 'album', component: AlbumPageComponent , canActivate: [UserConnectedGuard]},
+    { path: 'album/:id', component: AlbumPageComponent , canActivate: [UserConnectedGuard]},
+    { path: 'album/:id/edit', component: AlbumPageComponent, canActivate: [UserConnectedGuard] },
+    { path: 'album/:id/show', component: AlbumPageComponent , canActivate: [UserConnectedGuard]},
+    { path: 'classe/:id', component: ClasseComponent , canActivate: [UserConnectedGuard]},
 ];
 
 @NgModule({

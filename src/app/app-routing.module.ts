@@ -9,7 +9,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { UserConnectedGuard } from './user-connected.guard';
-
+import { ButtonModule } from 'primeng/button';
 const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent},
@@ -35,7 +35,8 @@ const routes: Routes = [
     imports: [
         ReactiveFormsModule,
         RouterModule.forRoot(routes),
-        CommonModule
+        CommonModule,
+        ButtonModule
     ],
     exports: [RouterModule]
 })

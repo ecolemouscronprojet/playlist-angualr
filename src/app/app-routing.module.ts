@@ -1,15 +1,16 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { PlaylistPageComponent } from './playlist-page/playlist-page.component';
 import { AlbumPageComponent } from './album-page/album-page.component';
 import { ClasseComponent } from './classe/classe.component';
-import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './layout/header/header.component';
-import { RegistrationComponent } from './registration/registration.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
+import { PlaylistPageComponent } from './playlist-page/playlist-page.component';
+import { RegistrationComponent } from './registration/registration.component';
 import { UserConnectedGuard } from './user-connected.guard';
-import { ButtonModule } from 'primeng/button';
+import { SharedUiModule } from './shared-ui/shared-ui.module';
+
 const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent},
@@ -36,7 +37,7 @@ const routes: Routes = [
         ReactiveFormsModule,
         RouterModule.forRoot(routes),
         CommonModule,
-        ButtonModule
+        SharedUiModule
     ],
     exports: [RouterModule]
 })

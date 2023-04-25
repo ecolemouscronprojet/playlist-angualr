@@ -1,15 +1,20 @@
-<form [formGroup]="loginForm" (ngSubmit)="login()">
+<p-card header="Se connecter">
+    <div class="m-0">
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
 
-    <div>
-        <label for="login">login: </label>
-        <input id="login" type="text" formControlName="login">
+            <div class="flex flex-column gap-2">
+                <label htmlFor="login" class="align-self-start">Login</label>
+                <input pInputText id="login" aria-describedby="login-help" formControlName="login" class="align-self-start" />
+            </div>
+
+            <div class="flex flex-column gap-2">
+                <label htmlFor="password" class="align-self-start">Password</label>
+                <p-password id="login" formControlName="password" [toggleMask]="true" class="align-self-start"></p-password>
+            </div>
+
+            <div class="align-self-start p-mt-5">
+                <p-button type="submit" [disabled]="!loginForm.valid" label="Se connecter"></p-button>
+            </div>
+        </form>
     </div>
-    <div>
-
-        <label for="password">Password: </label>
-        <input id="password" type="password" formControlName="password">
-    </div>
-
-    <button type="submit" [disabled]="!loginForm.valid">Se connecter</button>
-    <p-button label="Submit"></p-button>
-</form>
+</p-card>
